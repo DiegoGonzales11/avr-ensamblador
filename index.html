@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("avr-theme")==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Instrucciones AVR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -278,7 +279,9 @@ footer .wrap { padding-block: 18px 28px; display: grid; gap: 4px; }
   const root = document.documentElement;
   const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>';
   const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>';
-  try { const s = localStorage.getItem('avr-theme'); if (s === 'dark' || s === 'light') root.setAttribute('data-theme', s); } catch (e) {}
+  let saved = null;
+  try { saved = localStorage.getItem('avr-theme'); } catch (e) {}
+  root.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
   const current = () => root.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light');
   const themeBtn = document.getElementById('theme');
